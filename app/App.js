@@ -1,9 +1,3 @@
-/**
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 

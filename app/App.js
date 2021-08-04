@@ -1,7 +1,11 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import {StatusBar} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import {StatusBar, useColorScheme} from 'react-native';
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
@@ -14,6 +18,19 @@ import Reducers from './store';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+  const schema = useColorScheme();
+  const MyTheme = {
+    // ...(schema === 'dark' ? DarkTheme : DefaultTheme),
+    dark: true,
+    colors: {
+      primary: 'white',
+      background: 'white',
+      card: 'white',
+      text: 'white',
+      border: 'white',
+      notification: 'white',
+    },
+  };
   const store = createStore(Reducers);
   return (
     <Provider store={store}>
@@ -22,35 +39,25 @@ const App = () => {
         backgroundColor="white"
         barStyle="dark-content"
       />
-      <NavigationContainer>
+      <NavigationContainer theme={MyTheme}>
         <BackgroundView>
           <Stack.Navigator initialRouteName="Home">
             <Stack.Screen
               options={{
-                // headerShown: false,
-                headerTitle: props => <Header {...props} />,
-                headerTintColor: '#fff',
-                headerStyle: {
-                  backgroundColor: 'white',
-                },
+                headerTitle: props => <Header type="home" {...props} />,
+                headerBackVisible: false,
               }}
               name="Home"
               component={Home}
             />
             <Stack.Screen
               options={{
-                headerShown: false,
+                headerTitle: props => <Header type="addTask" {...props} />,
+                headerBackVisible: false,
               }}
-              //   headerTitle: 'FormToDo',
-              //   headerTintColor: '#fff',
-              //   headerStyle: {
-              //     backgroundColor: 'white',
-              //   },
-              // }}
-              name="FormToDo"
+              name="addTask"
               component={ToDoForm}
             />
-            {/* <Stack.Screen name="Form" component={View />} /> */}
           </Stack.Navigator>
         </BackgroundView>
       </NavigationContainer>

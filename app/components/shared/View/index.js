@@ -2,9 +2,10 @@ import styled from 'styled-components';
 
 export const Horizontal = styled.View`
   flex-direction: row;
-  flex: 1;
-  justify-content: ${({justifyContent}) => justifyContent};
-  width: ${({width}) => width};
+  ${({justifyContent}) =>
+    justifyContent ? 'justify-content: ' + justifyContent + ';' : ''}
+  ${({width}) => (width ? 'width: ' + width + ';' : '')}
+  ${({height}) => (height ? 'height: ' + height : '')}
 `;
 
 export const Vertical = styled.View`
@@ -22,7 +23,7 @@ export const SpaceBtwAlignCenter = styled.View`
 `;
 
 export const CustomView = styled.View`
-  ${({width}) => (width ? 'width: ' + width + 'px;' : '')}
+  ${({width}) => (width ? 'width: ' + width + ';' : '')}
   ${({height}) => (height ? 'height: ' + height + 'px;' : '')}
   ${({flex}) => (flex ? 'flex: ' + flex + ';' : '')}
   ${({justifyContent}) =>

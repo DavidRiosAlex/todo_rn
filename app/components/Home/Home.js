@@ -7,19 +7,11 @@ import Label from '../shared/Label';
 const Home = ({navigation}) => {
   const {width, height} = Dimensions.get('window');
   const handleFormClick = () => {
-    console.log('to form to do')
-    navigation.navigate('FormToDo');
+    navigation.navigate('addTask');
   };
   return (
     <Vertical flex={1}>
-      <CustomView flex={1}>
-        <Label>hola</Label>
-        <Label>hola</Label>
-        <Label>hola</Label>
-        <Label>hola</Label>
-        <Label>hola</Label>
-        <Label>hola</Label>
-      </CustomView>
+      <CustomView flex={1} />
       <CustomView marginBottom={height * 0.05}>
         <ButtonAdd
           width={width * 0.9}

@@ -1,11 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import {StatusBar, useColorScheme} from 'react-native';
-import {
-  NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
-} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';

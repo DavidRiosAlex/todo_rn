@@ -36,5 +36,10 @@ export const CustomView = styled.View`
   ${({marginBottom}) =>
     marginBottom ? 'margin-bottom: ' + marginBottom + 'px;' : ''}
   ${({marginRight}) =>
-    marginRight ? 'margin-rigth: ' + marginRight + 'px;' : ''}
+    marginRight ? 'margin-right: ' + marginRight + 'px;' : ''}
+  ${({flexWrap}) => (flexWrap ? 'flex-wrap: ' + flexWrap + ';' : '')}
+  ${({paddingLeft}) =>
+    paddingLeft ? 'padding-left: ' + paddingLeft + ';' : ''}
+  ${({borderRadius}) =>
+    borderRadius ? 'border-radius: ' + borderRadius + ';' : ''}
 `;

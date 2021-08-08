@@ -1,28 +1,6 @@
 import styled from 'styled-components';
 
-export const Horizontal = styled.View`
-  flex-direction: row;
-  ${({justifyContent}) =>
-    justifyContent ? 'justify-content: ' + justifyContent + ';' : ''}
-  ${({width}) => (width ? 'width: ' + width + ';' : '')}
-  ${({height}) => (height ? 'height: ' + height : '')}
-`;
-
-export const Vertical = styled.View`
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  ${({flex}) => (flex ? 'flex: ' + flex + ';' : '')}
-`;
-
-export const SpaceBtwAlignCenter = styled.View`
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  width: 95%;
-`;
-
-export const CustomView = styled.View`
+export const CustomScrollView = styled.ScrollView`
   ${({width}) => (width ? 'width: ' + width + ';' : '')}
   ${({height}) => (height ? 'height: ' + height + ';' : '')}
   ${({flex}) => (flex ? 'flex: ' + flex + ';' : '')}
@@ -34,14 +12,16 @@ export const CustomView = styled.View`
   ${({marginTop}) => (marginTop ? 'margin-top: ' + marginTop + 'px;' : '')}
   ${({marginLeft}) => (marginLeft ? 'margin-left: ' + marginLeft + 'px;' : '')}
   ${({marginBottom}) =>
-    marginBottom ? 'margin-bottom: ' + marginBottom + ';' : ''}
+    marginBottom ? 'margin-bottom: ' + marginBottom + 'px;' : ''}
   ${({marginRight}) =>
     marginRight ? 'margin-right: ' + marginRight + 'px;' : ''}
   ${({flexWrap}) => (flexWrap ? 'flex-wrap: ' + flexWrap + ';' : '')}
   ${({paddingLeft}) =>
     paddingLeft ? 'padding-left: ' + paddingLeft + ';' : ''}
-  ${({paddingRight}) =>
-    paddingRight ? 'padding-right: ' + paddingRight + ';' : ''}
+  ${({paddingBottom}) =>
+    paddingBottom ? 'padding-bottom: ' + paddingBottom + ';' : ''}
   ${({borderRadius}) =>
     borderRadius ? 'border-radius: ' + borderRadius + ';' : ''}
+  ${props =>
+    props['flex-wrap'] ? 'flex-wrap: ' + props['flex-wrap'] + ';' : ''}
 `;

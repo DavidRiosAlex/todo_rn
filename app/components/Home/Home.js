@@ -12,13 +12,13 @@ const Home = ({navigation}) => {
   return (
     <Vertical flex={1}>
       <CustomView flex={1} />
-      <CustomView marginBottom={height * 0.05}>
+      <CustomView marginBottom={`${height * 0.05}px`}>
         <ButtonAdd
           width={width * 0.9}
           justifyContent="center"
           alignItems="flex-end"
           flexDirection="column"
-          height={height - height * 0.1}
+          height={`${height - height * 0.1}px`}
           labelColor="white"
           flex={1}
           onPress={handleFormClick}>

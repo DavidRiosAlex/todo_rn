@@ -1,16 +1,19 @@
 import styled from 'styled-components';
 
 export const ButtonAdd = styled.TouchableOpacity`
-  height: 40px;
   padding: 12px;
   border-radius: 10px;
   background-color: green;
   align-items: center;
+  max-height: 50px;
+  ${({justifyContent}) =>
+    justifyContent ? 'justify-content: ' + justifyContent + ';' : ''}
   ${({width}) => (width ? 'width: ' + width + 'px;' : '')}
-  ${({marginTop}) => (marginTop ? 'margin-top: ' + marginTop + 'px;' : '')}
-  ${({marginLeft}) => (marginLeft ? 'margin-left: ' + marginLeft + 'px;' : '')}
+  ${({height}) => (height ? 'height: ' + height + ';' : '')}
+  ${({marginTop}) => (marginTop ? 'margin-top: ' + marginTop + ';' : '')}
+  ${({marginLeft}) => (marginLeft ? 'margin-left: ' + marginLeft + ';' : '')}
   ${({marginBottom}) =>
-    marginBottom ? 'margin-bottom: ' + marginBottom + 'px;' : ''}
+    marginBottom ? 'margin-bottom: ' + marginBottom + ';' : ''}
   ${({marginRight}) =>
     marginRight ? 'margin-right: ' + marginRight + 'px;' : ''}
 `;

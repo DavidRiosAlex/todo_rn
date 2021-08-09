@@ -1,5 +1,5 @@
 const initialState = {
-  tasks: [],
+  items: [],
 };
 
 export default (state = initialState, action) => {
@@ -7,6 +7,7 @@ export default (state = initialState, action) => {
     case 'NEW_TASK': {
       return {
         ...state,
+        items: state.items.concat(action.payload),
       };
     }
     default:

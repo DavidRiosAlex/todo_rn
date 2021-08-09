@@ -1,21 +1,24 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Dimensions} from 'react-native';
-import DatePicker from 'react-native-date-picker';
+import moment from 'moment';
 import {useDispatch} from 'react-redux';
 import {CustomView} from '../shared/View';
 import {CustomScrollView} from '../shared/CustomScrollView';
 import {ButtonAdd} from '../shared/Button';
 import {InputIcon} from '../shared/Input';
 import Label from '../shared/Label';
+import DateTimePickerModal from '../shared/DateTimePickerModal';
 
 const ToDoForm = ({navigation}) => {
   const {width, height} = Dimensions.get('window');
   const [title, setTitle] = useState('');
   const [deadline, setDeadline] = useState('');
-  const [startTime, setStartTime] = useState('');
-  const [endTime, setEndTime] = useState('');
+  const [startTime, setStartTime] = useState(moment());
+  const [endTime, setEndTime] = useState(moment().add(1, 'minutes'));
   const [remind, setRemind] = useState('');
   const [repeat, setRepeat] = useState('');
+  const [openModalStart, setOpenModalStart] = useState(false);
+  const [openModalEnd, setOpenModalEnd] = useState(false);
   const dispatch = useDispatch();
 
   const functionIndex = {
@@ -25,7 +28,16 @@ const ToDoForm = ({navigation}) => {
     endTime: setEndTime,
     remind: setRemind,
     repeat: setRepeat,
+    modalStart: () =>
+      openModalStart ? setOpenModalStart(false) : setOpenModalStart(true),
+    modalEnd: () =>
+      openModalEnd ? setOpenModalEnd(false) : setOpenModalEnd(true),
   };
+
+  // useEffect(() => {
+  //   console.log(startTime);
+  //   console.log(openModalStart);
+  // }, [startTime, openModalStart]);
 
   const onChangeInput = inputName => {
     const setStateFunction = functionIndex[inputName];
@@ -34,8 +46,9 @@ const ToDoForm = ({navigation}) => {
         `function ${inputName} doesn't exist in functionIndex state`,
       );
     }
-    return ({nativeEvent: {text}}) => {
-      setStateFunction(text);
+    return event => {
+      const value = event?.nativeEvent?.text ? event.nativeEvent.text : event;
+      setStateFunction(value);
       return undefined;
     };
   };
@@ -94,17 +107,31 @@ const ToDoForm = ({navigation}) => {
           //   ]backgroundColor="red"
           paddingLeft={`${Math.floor(width * 0.05)}px`}
           paddingRight={`${Math.floor(width * 0.05)}px`}>
-          <InputIcon
-            src="clockcircleo"
-            label="Start Time"
-            value={startTime}
-            onChange={onChangeInput('startTime')}
+          <DateTimePickerModal
+            openModal={openModalStart}
+            onClose={onChangeInput('modalStart')}
+            onDateChange={onChangeInput('startTime')}
+            date={new Date(startTime)}
+          />
+          <DateTimePickerModal
+            openModal={openModalEnd}
+            onClose={onChangeInput('modalEnd')}
+            onDateChange={onChangeInput('endTime')}
+            date={new Date(endTime)}
           />
           <InputIcon
-            src="clockcircleo"
+            type=""
+            label="Start Time"
+            value={moment(startTime).format('YYYY MM DD HH:MM')}
+            onFocus={onChangeInput('modalStart')}
+            // onChange={onChangeInput('modal')}
+          />
+          <InputIcon
+            type=""
             label="End Time"
-            value={endTime}
-            onChange={onChangeInput('endTime')}
+            value={moment(endTime).format('YYYY MM DD HH:MM')}
+            onFocus={onChangeInput('modalEnd')}
+            // onChange={onChangeInput('modal')}
           />
         </CustomView>
         <CustomView

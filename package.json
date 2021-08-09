@@ -12,6 +12,9 @@
   "dependencies": {
     "@react-navigation/native": "^6.0.0",
     "@react-navigation/native-stack": "^6.0.0",
+    "bson": "^4.4.1",
+    "bson-objectid": "^2.0.1",
+    "crypto": "^1.0.1",
     "date-fns": "^2.23.0",
     "moment": "^2.29.1",
     "prop-types": "^15.7.2",

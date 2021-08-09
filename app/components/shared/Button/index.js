@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const ButtonAdd = styled.TouchableOpacity`
   padding: 12px;
   border-radius: 10px;
-  background-color: green;
+  background-color: #0c0c0c;
   align-items: center;
   max-height: 50px;
   ${({justifyContent}) =>

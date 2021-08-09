@@ -2,14 +2,13 @@ import React from 'react';
 import {Dimensions, FlatList} from 'react-native';
 import moment from 'moment';
 import {useSelector} from 'react-redux';
+import ObjectId from 'bson-objectid';
 import {Vertical, CustomView} from '../shared/View';
 import {ButtonAdd} from '../shared/Button';
 import Label from '../shared/Label';
 
 const Item = ({index, item, ...props}) => {
   const {width, height} = Dimensions.get('window');
-  console.log(index);
-  console.log(item);
   return (
     <CustomView
       key={index}
@@ -30,14 +29,19 @@ const Item = ({index, item, ...props}) => {
 const Home = ({navigation}) => {
   const {width, height} = Dimensions.get('window');
   const tasks = useSelector(storage => storage.tasks.items);
-  console.log(tasks);
   const handleFormClick = () => {
     navigation.navigate('addTask');
   };
   return (
     <Vertical flex={1}>
       <CustomView flex={1}>
-        <FlatList data={tasks} renderItem={Item} flex={1} />
+        <FlatList
+          data={tasks}
+          renderItem={Item}
+          flex={1}
+          keyExtractor={() => ObjectId()}
+          paddingTop={20}
+        />
       </CustomView>
       <CustomView marginBottom={`${height * 0.05}px`}>
         <ButtonAdd
@@ -49,7 +53,7 @@ const Home = ({navigation}) => {
           labelColor="white"
           flex={1}
           onPress={handleFormClick}>
-          <Label fontSize={14} fontColor="white">
+          <Label fontSize={14} fontColor="white" fontWeigth="bold">
             Add a task
           </Label>
         </ButtonAdd>

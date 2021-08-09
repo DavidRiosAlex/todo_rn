@@ -120,14 +120,14 @@ const ToDoForm = ({navigation}) => {
             date={new Date(endTime)}
           />
           <InputIcon
-            type=""
+            src="clockcircleo"
             label="Start Time"
             value={moment(startTime).format('YYYY MM DD HH:MM')}
             onFocus={onChangeInput('modalStart')}
             // onChange={onChangeInput('modal')}
           />
           <InputIcon
-            type=""
+            src="clockcircleo"
             label="End Time"
             value={moment(endTime).format('YYYY MM DD HH:MM')}
             onFocus={onChangeInput('modalEnd')}
@@ -165,7 +165,7 @@ const ToDoForm = ({navigation}) => {
             marginBottom={Math.floor(height * 0.1) + 'px'}
             marginTop={Math.floor(height * 0.05) + 'px'}
             flex={1}>
-            <Label fontColor="white" fontWeigth="bold">
+            <Label fontColor="white" fontWeigth="bold" fontSize="15">
               Add
             </Label>
           </ButtonAdd>

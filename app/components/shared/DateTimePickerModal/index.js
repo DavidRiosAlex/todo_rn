@@ -22,7 +22,9 @@ const DateTimePickerModal = ({
         backgroundColor="white"
         flexDirection="column"
         height={`${height * 0.5}px`}
-        justifyContent="space-between">
+        justifyContent="space-between"
+        alignItems="center"
+        maxHeight={300}>
         <DatePicker
           date={date}
           is24hourSource="locale"

@@ -13,7 +13,6 @@ const newTaskSaveWorker = function* ({payload}) {
 const tasksGetWorker = function* ({payload}) {
   try {
     const task = yield call(getTasks);
-    console.log(task);
     yield put(getTasksSuccess(task));
   } catch (err) {
     console.log(err);

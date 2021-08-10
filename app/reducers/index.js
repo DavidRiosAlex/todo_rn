@@ -1,4 +1,4 @@
-import {GET_TASKS_SUCCESS, NEW_TASK, GET_TASKS} from '../actions';
+import {GET_TASKS_SUCCESS, NEW_TASK} from '../actions';
 const initialState = {
   items: [],
 };

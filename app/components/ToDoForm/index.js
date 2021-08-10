@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Dimensions} from 'react-native';
 import moment from 'moment';
 import {useDispatch} from 'react-redux';
@@ -8,6 +8,7 @@ import {ButtonAdd} from '../shared/Button';
 import {InputIcon} from '../shared/Input';
 import Label from '../shared/Label';
 import DateTimePickerModal from '../shared/DateTimePickerModal';
+import {newTask} from '../../actions';
 
 const ToDoForm = ({navigation}) => {
   const {width, height} = Dimensions.get('window');
@@ -57,15 +58,12 @@ const ToDoForm = ({navigation}) => {
     const payload = {
       title,
       deadline,
-      startTime,
-      endTime,
+      startTime: startTime.toISOString(),
+      endTime: endTime.toISOString(),
       remind,
       repeat,
     };
-    dispatch({
-      type: 'NEW_TASK',
-      payload,
-    });
+    dispatch(newTask(payload));
     return navigation.goBack();
   };
 

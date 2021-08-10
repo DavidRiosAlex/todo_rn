@@ -1,13 +1,20 @@
+import {GET_TASKS_SUCCESS, NEW_TASK, GET_TASKS} from '../actions';
 const initialState = {
   items: [],
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'NEW_TASK': {
+    case NEW_TASK: {
       return {
         ...state,
-        items: state.items.concat(action.payload),
+        items: [...state.items, action.payload],
+      };
+    }
+    case GET_TASKS_SUCCESS: {
+      return {
+        ...state,
+        items: action.payload,
       };
     }
     default:

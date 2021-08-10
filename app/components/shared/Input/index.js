@@ -12,11 +12,7 @@ export const InputText = styled.TextInput`
   color: black;
 `;
 
-// export const InputField = styled.Input`
-//   font-size: 14px;
-// `;
-
-export const InputIcon = ({src, iconSource, label, ...props}) => {
+export const InputIcon = ({src, label, ...props}) => {
   const {width} = Dimensions.get('window');
 
   return (
@@ -33,7 +29,8 @@ export const InputIcon = ({src, iconSource, label, ...props}) => {
         marginTop={`${width * 0.01}`}
         marginRight={`${width * 0.01}`}
         borderRadius={`${Math.floor(width * 0.02)}px`}
-        paddingHorizontal={5}>
+        paddingRight={5 + 'px'}
+        paddingLeft={5 + 'px'}>
         <InputText {...props} />
         <IconAntDesign name={src} size={15} />
       </CustomView>

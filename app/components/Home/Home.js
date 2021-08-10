@@ -1,14 +1,16 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Dimensions, FlatList} from 'react-native';
 import moment from 'moment';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import ObjectId from 'bson-objectid';
 import {Vertical, CustomView} from '../shared/View';
 import {ButtonAdd} from '../shared/Button';
 import Label from '../shared/Label';
+import {getTasks} from '../../actions';
 
 const Item = ({index, item, ...props}) => {
   const {width, height} = Dimensions.get('window');
+  console.log(item.title);
   return (
     <CustomView
       key={index}
@@ -28,10 +30,16 @@ const Item = ({index, item, ...props}) => {
 
 const Home = ({navigation}) => {
   const {width, height} = Dimensions.get('window');
+  const dispatch = useDispatch();
   const tasks = useSelector(storage => storage.tasks.items);
   const handleFormClick = () => {
     navigation.navigate('addTask');
   };
+console.log(tasks)
+  useEffect(() => {
+    dispatch(getTasks());
+  }, [dispatch]);
+
   return (
     <Vertical flex={1}>
       <CustomView flex={1}>

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Dimensions} from 'react-native';
 import moment from 'moment';
 import {useDispatch} from 'react-redux';
+import DropDownPicker from 'react-native-dropdown-picker';
 import {CustomView} from '../shared/View';
 import {CustomScrollView} from '../shared/CustomScrollView';
 import {ButtonAdd} from '../shared/Button';
@@ -20,6 +21,10 @@ const ToDoForm = ({navigation}) => {
   const [repeat, setRepeat] = useState('');
   const [openModalStart, setOpenModalStart] = useState(false);
   const [openModalEnd, setOpenModalEnd] = useState(false);
+  const [items] = useState([
+    {label: 'Apple', value: 'apple'},
+    {label: 'Banana', value: 'banana'},
+  ]);
   const dispatch = useDispatch();
 
   const functionIndex = {
@@ -92,9 +97,7 @@ const ToDoForm = ({navigation}) => {
         <CustomView
           paddingLeft={`${Math.floor(width * 0.05)}px`}
           paddingRight={`${Math.floor(width * 0.05)}px`}>
-          <InputIcon
-            type=""
-            label="Deadline"
+          <DropDownPicker
             value={deadline}
             onChange={onChangeInput('deadline')}
           />
@@ -135,7 +138,7 @@ const ToDoForm = ({navigation}) => {
         <CustomView
           paddingLeft={`${Math.floor(width * 0.05)}px`}
           paddingRight={`${Math.floor(width * 0.05)}px`}>
-          <InputIcon
+          <DropDownPicker
             type=""
             label="Remind"
             value={remind}
@@ -145,7 +148,9 @@ const ToDoForm = ({navigation}) => {
         <CustomView
           paddingLeft={`${Math.floor(width * 0.05)}px`}
           paddingRight={`${Math.floor(width * 0.05)}px`}>
-          <InputIcon
+          <DropDownPicker
+            items={items}
+            open={true}
             type=""
             label="Repeat"
             value={repeat}

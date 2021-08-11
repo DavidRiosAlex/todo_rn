@@ -35,7 +35,6 @@ const Home = ({navigation}) => {
   const handleFormClick = () => {
     navigation.navigate('addTask');
   };
-console.log(tasks)
   useEffect(() => {
     dispatch(getTasks());
   }, [dispatch]);

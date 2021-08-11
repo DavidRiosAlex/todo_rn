@@ -13,19 +13,9 @@ const Task = {
   },
 };
 
-const Cat = {
-  name: 'Cat',
-  properties: {
-    _id: 'objectId',
-    name: 'string',
-    age: 'int',
-    type: 'string',
-  },
-};
-
 const initDB = () => {
   const connection = Realm.open({
-    path: 'myrealm',
+    path: 'com.database',
     schema: [Task],
   });
   return connection;

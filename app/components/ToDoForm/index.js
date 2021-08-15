@@ -94,7 +94,7 @@ const ToDoForm = ({navigation}) => {
           paddingRight={`${Math.floor(width * 0.05)}px`}>
           <InputIcon
             type=""
-            label="Deadline"
+            label="Description"
             value={deadline}
             onChange={onChangeInput('deadline')}
           />

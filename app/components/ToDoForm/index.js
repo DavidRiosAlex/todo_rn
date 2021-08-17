@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {Dimensions} from 'react-native';
 import moment from 'moment';
 import {useDispatch} from 'react-redux';
-import DropDownPicker from 'react-native-dropdown-picker';
 import {CustomView} from '../shared/View';
 import {CustomScrollView} from '../shared/CustomScrollView';
 import {ButtonAdd} from '../shared/Button';
@@ -10,6 +9,9 @@ import {InputIcon} from '../shared/Input';
 import Label from '../shared/Label';
 import DateTimePickerModal from '../shared/DateTimePickerModal';
 import {newTask} from '../../actions';
+import SelectDropDown from '../shared/DropDown';
+import Const from '../../constants';
+// import Select from '../shared/Select';
 
 const ToDoForm = ({navigation}) => {
   const {width, height} = Dimensions.get('window');
@@ -17,14 +19,17 @@ const ToDoForm = ({navigation}) => {
   const [deadline, setDeadline] = useState('');
   const [startTime, setStartTime] = useState(moment());
   const [endTime, setEndTime] = useState(moment().add(1, 'minutes'));
-  const [remind, setRemind] = useState('');
-  const [repeat, setRepeat] = useState('');
+  const [remind, setRemind] = useState({
+    label: null,
+    value: null,
+  });
+  const [repeat, setRepeat] = useState({
+    label: null,
+    value: null,
+  });
   const [openModalStart, setOpenModalStart] = useState(false);
   const [openModalEnd, setOpenModalEnd] = useState(false);
-  const [items] = useState([
-    {label: 'Apple', value: 'apple'},
-    {label: 'Banana', value: 'banana'},
-  ]);
+
   const dispatch = useDispatch();
 
   const functionIndex = {
@@ -65,18 +70,34 @@ const ToDoForm = ({navigation}) => {
       deadline,
       startTime: startTime.toISOString(),
       endTime: endTime.toISOString(),
-      remind,
-      repeat,
+      remind: remind,
+      repeat: repeat,
     };
-    dispatch(newTask(payload));
+    console.log(
+      typeof payload.title,
+      typeof payload.deadline,
+      payload.remind,
+      payload.repeat,
+    );
+    if (
+      typeof payload.title === 'string' &&
+      title.length > 0 &&
+      typeof payload.deadline === 'string' &&
+      deadline.length > 0 &&
+      typeof payload.remind === 'number' &&
+      typeof payload.repeat === 'string' &&
+      repeat.length > 0
+    ) {
+      dispatch(newTask(payload));
+    }
     return navigation.goBack();
   };
-
   return (
     <CustomScrollView
       backgroundColor="white"
       // eslint-disable-next-line react-native/no-inline-styles
       contentContainerStyle={{flexGrow: 1}}
+      nestedScrollEnabled={true}
       width="100%"
       height="100%">
       <CustomView
@@ -97,7 +118,9 @@ const ToDoForm = ({navigation}) => {
         <CustomView
           paddingLeft={`${Math.floor(width * 0.05)}px`}
           paddingRight={`${Math.floor(width * 0.05)}px`}>
-          <DropDownPicker
+          <InputIcon
+            type=""
+            label="Description"
             value={deadline}
             onChange={onChangeInput('deadline')}
           />
@@ -138,22 +161,16 @@ const ToDoForm = ({navigation}) => {
         <CustomView
           paddingLeft={`${Math.floor(width * 0.05)}px`}
           paddingRight={`${Math.floor(width * 0.05)}px`}>
-          <DropDownPicker
-            type=""
-            label="Remind"
-            value={remind}
+          <SelectDropDown
+            options={Const.reminderOptions}
             onChange={onChangeInput('remind')}
           />
         </CustomView>
         <CustomView
           paddingLeft={`${Math.floor(width * 0.05)}px`}
           paddingRight={`${Math.floor(width * 0.05)}px`}>
-          <DropDownPicker
-            items={items}
-            open={true}
-            type=""
-            label="Repeat"
-            value={repeat}
+          <SelectDropDown
+            options={Const.repeatOptions}
             onChange={onChangeInput('repeat')}
           />
         </CustomView>

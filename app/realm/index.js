@@ -8,7 +8,7 @@ const Task = {
     deadline: 'string',
     startTime: 'string',
     endTime: 'string',
-    remind: 'string',
+    remind: 'number',
     repeat: 'string',
   },
 };
